@@ -1,7 +1,7 @@
-import Background from "@/images/background-blur.webp";
 import { REST } from "@discordjs/rest";
 import { faDiscord } from "@fortawesome/free-brands-svg-icons/faDiscord";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Background from "@images/background-blur.webp";
 import {
 	APIVersion,
 	Routes,
@@ -14,6 +14,7 @@ import { env } from "process";
 import { auth } from "./auth";
 import LogInButton from "./LogInButton";
 import LogOutButton from "./LogOutButton";
+import SmallLogInButton from "./SmallLogInButton";
 
 const font = Luckiest_Guy({
 	subsets: ["latin"],
@@ -34,7 +35,7 @@ const Home = async () => {
 	]);
 
 	return (
-		<>
+		<div className="min-h-screen flex flex-col">
 			<Image
 				src={Background}
 				alt="background"
@@ -42,7 +43,36 @@ const Home = async () => {
 				quality={75}
 				// priority
 			/>
-			<div className="flex flex-col justify-center items-center min-h-screen w-full">
+			<div className="flex justify-end pt-6 pr-6">
+				{session ? (
+					session.user?.image ? (
+						<Image
+							src={session.user.image}
+							width={128}
+							height={128}
+							alt="avatar"
+							className="w-16 h-auto rounded-full"
+							title={session.user.name ?? ""}
+						/>
+					) : (
+						<Image
+							src={rest.cdn.defaultAvatar(
+								session.user?.id
+									? Number(BigInt(session.user.id) >> 22n) % 6
+									: 0
+							)}
+							width={128}
+							height={128}
+							alt="avatar"
+							className="w-16 h-auto rounded-full"
+							title={session.user?.name ?? ""}
+						/>
+					)
+				) : (
+					<SmallLogInButton />
+				)}
+			</div>
+			<div className="flex flex-1 flex-col justify-center items-center mb-16 min-h-full">
 				<Image
 					alt="MS Bot avatar"
 					src={
@@ -103,7 +133,7 @@ const Home = async () => {
 					<LogInButton />
 				)}
 			</div>
-		</>
+		</div>
 	);
 };
 
