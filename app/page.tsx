@@ -41,7 +41,7 @@ const Home = async () => {
 				alt="background"
 				className="absolute h-full w-full opacity-50 object-cover -z-10"
 				quality={75}
-				// priority
+				priority
 			/>
 			<div className="flex justify-end pt-6 pr-6">
 				{session ? (
