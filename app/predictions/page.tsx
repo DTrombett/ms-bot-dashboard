@@ -1,7 +1,7 @@
 import { auth } from "@app/auth";
 import ForceLogin from "@app/ForceLogin";
 
-export const Predictions = async () => {
+const Predictions = async () => {
 	const session = await auth();
 
 	if (!session) return <ForceLogin />;
