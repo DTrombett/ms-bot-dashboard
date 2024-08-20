@@ -47,7 +47,7 @@ const RootLayout = async ({
 			<Image
 				src={Background}
 				alt="background"
-				className="absolute h-full w-full opacity-50 object-cover -z-10"
+				className="fixed h-screen w-screen opacity-25 object-cover -z-10"
 				quality={75}
 				priority
 			/>

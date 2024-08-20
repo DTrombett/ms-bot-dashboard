@@ -1,6 +1,5 @@
 "use client";
 import { Roboto } from "next/font/google";
-import { memo } from "react";
 import { signIn } from "./actions";
 
 const semiBold = Roboto({
@@ -9,9 +8,9 @@ const semiBold = Roboto({
 	weight: "500",
 });
 
-const LogInButton = () => (
+const SmallLogInButton = () => (
 	<button
-		className={`flex items-center rounded px-7 py-3 mt-2 text-lg transition-all duration-200 hover:opacity-90 absolute right-6 ${semiBold.className}`}
+		className={`flex items-center rounded px-7 py-3 mt-6 text-lg transition-all duration-200 hover:opacity-90 absolute right-6 ${semiBold.className}`}
 		style={{ backgroundColor: "#5865F2" }}
 		onClick={() => signIn("discord")}
 	>
@@ -19,4 +18,4 @@ const LogInButton = () => (
 	</button>
 );
 
-export default memo(LogInButton);
+export default SmallLogInButton;

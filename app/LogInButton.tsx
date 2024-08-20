@@ -2,7 +2,6 @@
 import { faDiscord } from "@fortawesome/free-brands-svg-icons/faDiscord";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Roboto } from "next/font/google";
-import { memo } from "react";
 import { signIn } from "./actions";
 
 const semiBold = Roboto({
@@ -22,4 +21,4 @@ const LogInButton = () => (
 	</button>
 );
 
-export default memo(LogInButton);
+export default LogInButton;
