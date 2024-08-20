@@ -59,8 +59,8 @@ const Predictions = async () => {
 	return (
 		<>
 			<Header session={session} title="PRONOSTICI" />
-			<div className={`mx-8 mb-8 ${font.className}`}>
-				<div className="mx-4 mb-6 h-16 flex items-center">
+			<div className={`sm:px-4 lg:px-8 mb-8 ${font.className}`}>
+				<div className="mx-6 sm:mx-4 mb-6 h-16 flex items-center">
 					<Image
 						alt="Serie A Enilive"
 						src="https://img.legaseriea.it/vimages/6685b340/SerieA_ENILIVE_RGB.jpg"
@@ -70,7 +70,7 @@ const Predictions = async () => {
 						className="rounded-sm w-auto mr-4"
 					/>
 					<a
-						className={`text-3xl mb-2 hover:underline ${bold.className}`}
+						className={`text-xl sm:text-2xl md:text-3xl mb-2 hover:underline ${bold.className}`}
 						style={{ color: "#00e8da" }}
 						href="https://legaseriea.it/it/serie-a"
 						target="_blank"
@@ -79,8 +79,8 @@ const Predictions = async () => {
 						SERIE A ENILIVE
 					</a>
 				</div>
-				<div className="flex flex-col py-4 px-6 rounded-lg border border-white border-opacity-20 bg-zinc-800 bg-opacity-50">
-					<div className="flex justify-between items-end">
+				<div className="flex flex-col p-4 rounded-lg border-white border-opacity-20 lg:border lg:bg-zinc-800 lg:bg-opacity-50">
+					<div className="flex justify-between items-end px-2">
 						<div>
 							<h3
 								className={`${semiBold.className} text-2xl mb-1`}
@@ -96,38 +96,39 @@ const Predictions = async () => {
 							</span>
 						</div>
 						<span
-							className={`w-64 text-center mx-2 text-lg ${medium.className}`}
+							className={`hidden lg:block w-44 text-center mx-1 text-lg ${medium.className}`}
 						>
 							IL TUO PRONOSTICO
 						</span>
 					</div>
-					<div className="mt-4">
+					<div className="lg:mt-4 lg:px-2">
 						{matches.data.map((m) => {
 							const date = new Date(m.date_time);
 
 							return (
 								<div
 									key={m.match_id}
-									className="flex justify-between items-center border-white my-4 px-2 h-16"
+									className="flex flex-col lg:flex-row justify-between items-center border-white my-4 px-2 lg:h-16"
 								>
-									<div className="flex items-center w-64">
+									<div className="w-full flex flex-row-reverse justify-between lg:justify-start lg:flex-row items-center lg:w-40">
 										<FontAwesomeIcon
 											icon={faStar}
-											className="h-10 w-10 p-2 rounded-lg mr-2 hover:bg-zinc-700 hover:bg-opacity-50"
+											className="h-10 w-10 p-2 rounded-lg lg:mr-2 hover:bg-zinc-700 hover:bg-opacity-50"
 											role="button"
 											title="Match of the Match"
 											tabIndex={0}
 										/>
 										<span className="text-sm text-white text-opacity-80">
 											{date.toLocaleDateString()}
-											<br />
+											<br className="hidden lg:inline" />
+											<span className="lg:hidden">, </span>
 											{date.toLocaleTimeString()}
 										</span>
 									</div>
 									<div
-										className={`flex-1 flex justify-center text-nowrap text-xl ${semiBold.className}`}
+										className={`flex-1 flex flex-col sm:w-full lg:w-auto sm:flex-row justify-center text-nowrap text-xl ${semiBold.className}`}
 									>
-										<div className="flex-1 flex justify-end">
+										<div className="flex-1 flex justify-center lg:justify-end">
 											<a
 												className="hover:underline"
 												href={`https://legaseriea.it${m.home_team_url}`}
@@ -144,14 +145,17 @@ const Predictions = async () => {
 												height={64}
 											/>
 										</div>
-										<span className="mx-8" style={{ color: "#00e8da" }}>
+										<span
+											className="mx-8 my-1 lg:my-0 sm:flex-1 lg:flex-none text-center lg:text-left"
+											style={{ color: "#00e8da" }}
+										>
 											VS
 										</span>
-										<div className="flex-1 flex">
+										<div className="flex-1 flex justify-center lg:justify-start">
 											<Image
 												src={m.away_team_logo}
 												alt={`${m.away_team_name} logo`}
-												className="inline mr-2 w-8 h-auto"
+												className="inline mr-2 -ml-2 lg:ml-0 w-8 h-auto"
 												width={64}
 												height={64}
 											/>
@@ -165,7 +169,7 @@ const Predictions = async () => {
 											</a>
 										</div>
 									</div>
-									<div className="flex flex-col items-center w-64">
+									<div className="flex flex-col items-center w-40 mt-4 lg:mt-0">
 										<input
 											type="text"
 											id={`prediction-${m.match_id}`}
