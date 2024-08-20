@@ -119,10 +119,10 @@ const Predictions = async () => {
 											tabIndex={0}
 										/>
 										<span className="text-sm text-white text-opacity-80">
-											{date.toLocaleDateString()}
+											{date.toLocaleDateString("it")}
 											<br className="hidden lg:inline" />
 											<span className="lg:hidden">, </span>
-											{date.toLocaleTimeString()}
+											{date.toLocaleTimeString("it")}
 										</span>
 									</div>
 									<div
