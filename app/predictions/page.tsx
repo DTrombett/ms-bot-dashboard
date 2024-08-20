@@ -39,12 +39,12 @@ const predictionExamples = [
 	"1X",
 	"12",
 	"X2",
-	"1 (1-0)",
-	"1 (2-1)",
-	"2 (0-1)",
-	"2 (1-2)",
-	"X (0-0)",
-	"X (1-1)",
+	"1 (1 - 0)",
+	"1 (2 - 1)",
+	"2 (0 - 1)",
+	"2 (1 - 2)",
+	"X (0 - 0)",
+	"X (1 - 1)",
 ];
 
 const Predictions = async () => {
@@ -52,7 +52,7 @@ const Predictions = async () => {
 
 	if (!session) return <ForceLogin />;
 	const matches = (await fetch(
-		`https://www.legaseriea.it/api/stats/live/match?match_day_id=264711&order=oldest`
+		`https://legaseriea.it/api/stats/live/match?match_day_id=264711&order=oldest`
 	).then((res) => res.json())) as MatchesData;
 
 	if (!matches.success) return <>{matches.message}</>;
@@ -178,7 +178,7 @@ const Predictions = async () => {
 													Math.floor(Math.random() * predictionExamples.length)
 												]
 											}`}
-											className={`py-1 px-2 w-40 rounded-sm bg-zinc-700 bg-opacity-80 ${roboto.className}`}
+											className={`py-1 px-2 w-40 rounded-sm text-xl bg-zinc-700 bg-opacity-80 ${roboto.className}`}
 										/>
 									</div>
 								</div>
