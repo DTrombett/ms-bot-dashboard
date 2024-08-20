@@ -19,7 +19,7 @@ const Header = ({
 }) => (
 	<>
 		<h1
-			className={`text-6xl mt-6 w-full text-center ${font.className}`}
+			className={`text-4xl sm:text-5xl lg:text-6xl mt-6 mb-8 w-full text-center ${font.className}`}
 			style={{ textShadow: "#0049FF 2px 2px" }}
 		>
 			{title}
@@ -31,7 +31,7 @@ const Header = ({
 					width={128}
 					height={128}
 					alt="avatar"
-					className="w-16 h-auto rounded-full absolute right-6 top-6"
+					className="hidden sm:block sm:w-12 lg:w-16 h-auto rounded-full absolute right-6 top-6"
 					title={session.user.name ?? ""}
 				/>
 			) : (
@@ -42,7 +42,7 @@ const Header = ({
 					width={128}
 					height={128}
 					alt="avatar"
-					className="w-16 h-auto rounded-full absolute right-6 top-6"
+					className="hidden sm:block sm:w-12 lg:w-16 h-auto rounded-full absolute right-6 top-6"
 					title={session.user?.name ?? ""}
 				/>
 			)
