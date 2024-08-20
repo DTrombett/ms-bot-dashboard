@@ -60,11 +60,13 @@ const Home = async () => {
 					MS BOT
 				</span>
 				{session ? (
-					<div className={`flex text-lg my-6 ${medium.className}`}>
+					<div
+						className={`flex sm:flex-row flex-col text-lg my-6 ${medium.className}`}
+					>
 						<a
 							href="https://discord.gg/hzkSbTY5VS"
 							target="_blank"
-							className="flex items-center rounded-lg px-4 py-2 mx-2 w-40 justify-center transition-all duration-200 hover:scale-105 active:scale-100"
+							className="flex items-center rounded-lg px-4 py-2 m-2 w-40 justify-center transition-all duration-200 hover:scale-105 active:scale-100"
 							style={{ backgroundColor: "#5865F2" }}
 						>
 							<FontAwesomeIcon
@@ -75,7 +77,7 @@ const Home = async () => {
 						</a>
 						<Link
 							href="/predictions"
-							className="flex items-center rounded-lg px-4 py-2 mx-2 w-40 justify-center transition-all duration-200 hover:scale-105 active:scale-100"
+							className="flex items-center rounded-lg px-4 py-2 m-2 w-40 justify-center transition-all duration-200 hover:scale-105 active:scale-100"
 							style={{ backgroundColor: "#1f8b4c" }}
 						>
 							<Image

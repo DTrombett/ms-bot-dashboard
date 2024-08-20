@@ -6,7 +6,7 @@ import { signOut } from "./actions";
 
 const LogInButton = () => (
 	<button
-		className="flex items-center rounded-lg px-4 py-2 mx-2 w-40 justify-center transition-all duration-200 hover:scale-105 active:scale-100"
+		className="flex items-center rounded-lg px-4 py-2 m-2 w-40 justify-center transition-all duration-200 hover:scale-105 active:scale-100"
 		style={{ backgroundColor: "#ED4245" }}
 		onClick={() => signOut()}
 	>
