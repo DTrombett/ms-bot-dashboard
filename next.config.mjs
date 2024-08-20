@@ -26,6 +26,10 @@ const nextConfig = {
 				hostname: "raw.githubusercontent.com",
 				pathname: "/twitter/twemoji/master/assets/svg/*",
 			},
+			{
+				protocol: "https",
+				hostname: "img.legaseriea.it",
+			},
 		],
 	},
 };
