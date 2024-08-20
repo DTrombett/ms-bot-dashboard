@@ -61,7 +61,7 @@ const Home = async () => {
 				</span>
 				{session ? (
 					<div
-						className={`flex sm:flex-row flex-col text-lg my-6 ${medium.className}`}
+						className={`flex sm:flex-row flex-col text-lg my-6 scale-110 lg:scale-100 ${medium.className}`}
 					>
 						<a
 							href="https://discord.gg/hzkSbTY5VS"

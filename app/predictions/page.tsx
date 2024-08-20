@@ -110,10 +110,10 @@ const Predictions = async () => {
 									key={m.match_id}
 									className="flex flex-col lg:flex-row justify-between items-center border-white my-4 px-2 lg:h-16"
 								>
-									<div className="w-full flex flex-row-reverse justify-between lg:justify-start lg:flex-row items-center lg:w-40">
+									<div className="w-full flex flex-row-reverse my-2 lg:my-0 justify-between lg:justify-start lg:flex-row items-center lg:w-40">
 										<FontAwesomeIcon
 											icon={faStar}
-											className="h-10 w-10 p-2 rounded-lg lg:mr-2 hover:bg-zinc-700 hover:bg-opacity-50"
+											className="h-8 w-8 lg:h-6 lg:w-6 p-2 rounded-lg lg:mr-2 hover:bg-zinc-700 hover:bg-opacity-50"
 											role="button"
 											title="Match of the Match"
 											tabIndex={0}
@@ -146,7 +146,7 @@ const Predictions = async () => {
 											/>
 										</div>
 										<span
-											className="mx-8 my-1 lg:my-0 sm:flex-1 lg:flex-none text-center lg:text-left"
+											className="mx-8 my-2 lg:my-0 sm:flex-1 lg:flex-none text-center lg:text-left"
 											style={{ color: "#00e8da" }}
 										>
 											VS

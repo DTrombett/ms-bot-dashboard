@@ -11,7 +11,7 @@ const semiBold = Roboto({
 
 const LogInButton = () => (
 	<button
-		className={`flex items-center rounded px-7 py-3 mt-2 text-lg transition-all duration-200 hover:opacity-90 absolute right-6 ${semiBold.className}`}
+		className={`flex items-center rounded px-7 py-3 mt-6 text-lg transition-all duration-200 hover:opacity-90 absolute right-6 ${semiBold.className}`}
 		style={{ backgroundColor: "#5865F2" }}
 		onClick={() => signIn("discord")}
 	>
