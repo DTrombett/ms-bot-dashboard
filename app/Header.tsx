@@ -19,7 +19,7 @@ const Header = ({
 }) => (
 	<>
 		<h1
-			className={`text-6xl mt-6 w-full text-center ${font.className}`}
+			className={`text-6xl mt-6 mb-8 w-full text-center ${font.className}`}
 			style={{ textShadow: "#0049FF 2px 2px" }}
 		>
 			{title}

@@ -8,17 +8,17 @@ import { Luckiest_Guy, Roboto } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import { auth } from "./auth";
+import Header from "./Header";
 import LogInButton from "./LogInButton";
 import LogOutButton from "./LogOutButton";
 import { rest } from "./rest";
-import Header from "./Header";
 
 const font = Luckiest_Guy({
 	subsets: ["latin"],
 	display: "swap",
 	weight: "400",
 });
-const semiBold = Roboto({
+const medium = Roboto({
 	subsets: ["latin"],
 	display: "swap",
 	weight: "500",
@@ -60,7 +60,7 @@ const Home = async () => {
 					MS BOT
 				</span>
 				{session ? (
-					<div className={`flex text-lg my-6 ${semiBold.className}`}>
+					<div className={`flex text-lg my-6 ${medium.className}`}>
 						<a
 							href="https://discord.gg/hzkSbTY5VS"
 							target="_blank"
