@@ -1,6 +1,6 @@
 import { faDiscord } from "@fortawesome/free-brands-svg-icons/faDiscord";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Avatar from "@images/avatar.png";
+import Avatar from "@images/avatar.webp";
 import { Luckiest_Guy, Roboto } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
