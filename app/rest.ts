@@ -7,6 +7,6 @@ export const rest = new REST({
 	makeRequest: (url, init) =>
 		fetch(url, {
 			...(init as RequestInit),
-			cache: "force-cache",
+			next: { revalidate: Infinity },
 		}) as Promise<ResponseLike>,
 }).setToken(env.DISCORD_TOKEN!);

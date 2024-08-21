@@ -1,12 +1,12 @@
+import { sendPredictions } from "@app/actions";
 import type { MatchesData } from "@app/types";
 import { env } from "process";
 import FormElements from "./FormElements";
-import { sendPredictions } from "@app/actions";
 
 const MatchesLoader = async () => {
 	const matchDays = await fetch(
 		`https://legaseriea.it/api/season/${env.SEASON_ID}/championship/A/matchday`,
-		{ cache: "force-cache" }
+		{ next: { revalidate: Infinity } }
 	).then((res) =>
 		res.json<
 			| {
@@ -29,7 +29,7 @@ const MatchesLoader = async () => {
 	if (!matchDay) return <>No match to be played!</>;
 	const matches = await fetch(
 		`https://legaseriea.it/api/stats/live/match?match_day_id=${matchDay.id_category}&order=oldest`,
-		{ cache: "force-cache" }
+		{ next: { revalidate: Infinity } }
 	).then((res) => res.json<MatchesData>());
 
 	if (!matches.success) return <>{matches.message}</>;
