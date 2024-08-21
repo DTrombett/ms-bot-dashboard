@@ -2,6 +2,7 @@ import Background from "@images/background-blur.webp";
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import Image from "next/image";
+import { Suspense } from "react";
 import "tailwindcss/tailwind.css";
 import "./globals.css";
 
@@ -51,7 +52,7 @@ const RootLayout = async ({
 				quality={75}
 				priority
 			/>
-			{children}
+			<Suspense>{children}</Suspense>
 		</body>
 	</html>
 );

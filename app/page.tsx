@@ -1,17 +1,14 @@
 import { faDiscord } from "@fortawesome/free-brands-svg-icons/faDiscord";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-	Routes,
-	type RESTGetAPICurrentUserResult,
-} from "discord-api-types/v10";
 import { Luckiest_Guy, Roboto } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
+import { Suspense } from "react";
 import { auth } from "./auth";
+import Avatar from "./Avatar";
 import Header from "./Header";
 import LogInButton from "./LogInButton";
 import LogOutButton from "./LogOutButton";
-import { rest } from "./rest";
 
 const font = Luckiest_Guy({
 	subsets: ["latin"],
@@ -25,34 +22,19 @@ const medium = Roboto({
 });
 
 const Home = async () => {
-	const [session, bot] = await Promise.all([
-		auth(),
-		rest.get(Routes.user("@me")) as Promise<RESTGetAPICurrentUserResult>,
-	]);
+	const session = await auth();
 
 	return (
 		<>
 			<Header session={session} />
 			<div className="flex flex-1 flex-col justify-center items-center mb-16 min-h-full">
-				<Image
-					alt="MS Bot avatar"
-					src={
-						bot.avatar == null
-							? rest.cdn.defaultAvatar(
-									bot.discriminator === "0"
-										? Number(BigInt(bot.id) >> 22n) % 6
-										: Number(bot.discriminator) % 5
-							  )
-							: rest.cdn.avatar(bot.id, bot.avatar, {
-									size: 256,
-									extension: "webp",
-							  })
+				<Suspense
+					fallback={
+						<div className="rounded-full w-32 h-32 bg-zinc-700 bg-opacity-50" />
 					}
-					width={256}
-					height={256}
-					priority
-					className="rounded-full w-32 h-auto"
-				/>
+				>
+					<Avatar />
+				</Suspense>
 				<span
 					className={`text-5xl my-2 ${font.className}`}
 					style={{ textShadow: "#0049FF 3px 3px" }}

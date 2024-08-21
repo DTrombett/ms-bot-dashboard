@@ -1,11 +1,10 @@
 import { auth } from "@app/auth";
 import ForceLogin from "@app/ForceLogin";
 import Header from "@app/Header";
-import type { MatchesData } from "@app/types";
 import { Bai_Jamjuree } from "next/font/google";
 import Image from "next/image";
-import { env } from "process";
-import Form from "./Form";
+import { Suspense } from "react";
+import MatchesLoader from "./MatchesLoader";
 
 const font = Bai_Jamjuree({
 	subsets: ["latin"],
@@ -32,35 +31,6 @@ const Predictions = async () => {
 	const session = await auth();
 
 	if (!session) return <ForceLogin />;
-	const matchDays = await fetch(
-		`https://legaseriea.it/api/season/${env.SEASON_ID}/championship/A/matchday`,
-		{ cache: "force-cache" }
-	).then((res) =>
-		res.json<
-			| {
-					success: true;
-					data: {
-						category_status: "LIVE" | "PLAYED" | "TO BE PLAYED";
-						description: `${number}`;
-						id_category: number;
-					}[];
-			  }
-			| { success: false; message: string; errors: unknown[] }
-		>()
-	);
-
-	if (!matchDays.success) return <>{matchDays.message}</>;
-	const matchDay = matchDays.data.find(
-		(d) => d.category_status === "TO BE PLAYED"
-	);
-
-	if (!matchDay) return <>No match to be played!</>;
-	const matches = await fetch(
-		`https://legaseriea.it/api/stats/live/match?match_day_id=${matchDay.id_category}&order=oldest`,
-		{ cache: "force-cache" }
-	).then((res) => res.json<MatchesData>());
-
-	if (!matches.success) return <>{matches.message}</>;
 	return (
 		<>
 			<Header session={session} title="PRONOSTICI" />
@@ -106,7 +76,9 @@ const Predictions = async () => {
 							IL TUO PRONOSTICO
 						</span>
 					</div>
-					<Form matches={matches.data} />
+					<Suspense>
+						<MatchesLoader />
+					</Suspense>
 				</div>
 			</div>
 		</>
