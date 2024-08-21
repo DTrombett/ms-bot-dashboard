@@ -30,8 +30,6 @@ const Home = async () => {
 				<Image
 					alt="MS Bot avatar"
 					src={Avatar}
-					width={256}
-					height={256}
 					priority
 					className="rounded-full w-32 h-auto"
 				/>
