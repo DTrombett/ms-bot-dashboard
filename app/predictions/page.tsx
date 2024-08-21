@@ -4,6 +4,7 @@ import Header from "@app/Header";
 import type { MatchesData } from "@app/types";
 import { Bai_Jamjuree } from "next/font/google";
 import Image from "next/image";
+import { env } from "process";
 import Form from "./Form";
 
 const font = Bai_Jamjuree({
@@ -31,9 +32,33 @@ const Predictions = async () => {
 	const session = await auth();
 
 	if (!session) return <ForceLogin />;
-	const matches = (await fetch(
-		`https://legaseriea.it/api/stats/live/match?match_day_id=264711&order=oldest`
-	).then((res) => res.json())) as MatchesData;
+	const matchDays = await fetch(
+		`https://legaseriea.it/api/season/${env.SEASON_ID}/championship/A/matchday`,
+		{ cache: "force-cache" }
+	).then((res) =>
+		res.json<
+			| {
+					success: true;
+					data: {
+						category_status: "LIVE" | "PLAYED" | "TO BE PLAYED";
+						description: `${number}`;
+						id_category: number;
+					}[];
+			  }
+			| { success: false; message: string; errors: unknown[] }
+		>()
+	);
+
+	if (!matchDays.success) return <>{matchDays.message}</>;
+	const matchDay = matchDays.data.find(
+		(d) => d.category_status === "TO BE PLAYED"
+	);
+
+	if (!matchDay) return <>No match to be played!</>;
+	const matches = await fetch(
+		`https://legaseriea.it/api/stats/live/match?match_day_id=${matchDay.id_category}&order=oldest`,
+		{ cache: "force-cache" }
+	).then((res) => res.json<MatchesData>());
 
 	if (!matches.success) return <>{matches.message}</>;
 	return (
@@ -59,7 +84,7 @@ const Predictions = async () => {
 						SERIE A ENILIVE
 					</a>
 				</div>
-				<div className="flex flex-col p-4 rounded-lg border-white border-opacity-20 lg:border lg:bg-zinc-800 lg:bg-opacity-50">
+				<div className="flex flex-col p-4 rounded-lg border-white border-opacity-20 lg:border lg:bg-zinc-700 lg:bg-opacity-25">
 					<div className="flex justify-between items-end px-2">
 						<div>
 							<h3

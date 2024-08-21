@@ -36,7 +36,7 @@ const PredictionInput = ({ id }: { id: number }) => (
 					Math.floor(Math.random() * predictionExamples.length)
 				]
 			}`}
-			className={`py-1 px-2 w-40 rounded-sm text-xl bg-zinc-700 bg-opacity-80 ${roboto.className}`}
+			className={`py-1 px-2 w-40 rounded text-xl bg-zinc-600 bg-opacity-25 ${roboto.className}`}
 		/>
 	</div>
 );
