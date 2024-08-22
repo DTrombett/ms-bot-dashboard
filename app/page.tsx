@@ -1,24 +1,13 @@
 import { faDiscord } from "@fortawesome/free-brands-svg-icons/faDiscord";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Avatar from "@images/avatar.webp";
-import { Luckiest_Guy, Roboto } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
-import { auth } from "./auth";
 import Header from "./Header";
 import LogInButton from "./LogInButton";
 import LogOutButton from "./LogOutButton";
-
-const font = Luckiest_Guy({
-	subsets: ["latin"],
-	display: "swap",
-	weight: "400",
-});
-const medium = Roboto({
-	subsets: ["latin"],
-	display: "swap",
-	weight: "500",
-});
+import { auth } from "./utils/auth";
+import { brandFont, defaultMedium } from "./utils/fonts";
 
 const Home = async () => {
 	const session = await auth();
@@ -34,14 +23,14 @@ const Home = async () => {
 					className="rounded-full w-32 h-auto"
 				/>
 				<span
-					className={`text-5xl my-2 ${font.className}`}
+					className={`text-5xl my-2 ${brandFont.className}`}
 					style={{ textShadow: "#0049FF 3px 3px" }}
 				>
 					MS BOT
 				</span>
 				{session ? (
 					<div
-						className={`flex sm:flex-row flex-col text-lg my-6 scale-110 lg:scale-100 ${medium.className}`}
+						className={`flex sm:flex-row flex-col text-lg my-6 scale-110 lg:scale-100 ${defaultMedium.className}`}
 					>
 						<a
 							href="https://discord.gg/hzkSbTY5VS"

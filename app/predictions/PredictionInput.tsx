@@ -1,11 +1,8 @@
-import { Roboto } from "next/font/google";
-import { memo } from "react";
+import { defaultNormal } from "@app/utils/fonts";
+import type { Prediction, User } from "@app/utils/types";
+import { memo, Suspense, useMemo } from "react";
+import PredictionInputBox from "./PredictionInputBox";
 
-const roboto = Roboto({
-	subsets: ["latin"],
-	display: "swap",
-	weight: "400",
-});
 const predictionExamples = [
 	"1",
 	"X",
@@ -21,24 +18,43 @@ const predictionExamples = [
 	"X (1 - 1)",
 ];
 
-const PredictionInput = ({ id }: { id: number }) => (
-	<div className="flex flex-col items-center w-40 mt-4 lg:mt-0">
-		<input
-			type="text"
-			autoComplete="off"
-			maxLength={16}
-			name={id.toString()}
-			pattern="^(1|x|2|1x|12|x2|((1|2|x)\s*\(\s*(\d+)\s*-\s*(\d+)\s*\)))$"
-			required
-			autoCapitalize="characters"
-			placeholder={`es. ${
-				predictionExamples[
-					Math.floor(Math.random() * predictionExamples.length)
-				]
-			}`}
-			className={`py-1 px-2 w-40 rounded text-xl bg-zinc-600 bg-opacity-25 ${roboto.className}`}
-		/>
-	</div>
-);
+const PredictionInput = ({
+	id,
+	predictionsPromise,
+}: {
+	id: number;
+	predictionsPromise: Promise<
+		(Pick<Prediction, "matchId" | "prediction"> & Pick<User, "match">)[]
+	>;
+}) => {
+	const example = useMemo(
+		() =>
+			predictionExamples[Math.floor(Math.random() * predictionExamples.length)],
+		[]
+	);
+
+	return (
+		<div className="flex flex-col items-center w-40 mt-4 lg:mt-0">
+			<Suspense
+				fallback={
+					<input
+						type="text"
+						name={id.toString()}
+						required
+						disabled
+						placeholder={`es. ${example}`}
+						className={`py-1 px-2 w-40 rounded text-xl bg-zinc-600 bg-opacity-25 ${defaultNormal.className}`}
+					/>
+				}
+			>
+				<PredictionInputBox
+					id={id}
+					example={example}
+					predictionsPromise={predictionsPromise}
+				/>
+			</Suspense>
+		</div>
+	);
+};
 
 export default memo(PredictionInput);

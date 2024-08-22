@@ -1,14 +1,8 @@
 import type { Session } from "next-auth";
-import { Luckiest_Guy } from "next/font/google";
 import Image from "next/image";
-import { rest } from "./rest";
 import SmallLogInButton from "./SmallLogInButton";
-
-const font = Luckiest_Guy({
-	subsets: ["latin"],
-	display: "swap",
-	weight: "400",
-});
+import { brandFont } from "./utils/fonts";
+import rest from "./utils/rest";
 
 const Header = ({
 	session,
@@ -19,7 +13,7 @@ const Header = ({
 }) => (
 	<>
 		<h1
-			className={`text-4xl sm:text-5xl lg:text-6xl mt-6 mb-8 w-full text-center ${font.className}`}
+			className={`text-4xl sm:text-5xl lg:text-6xl mt-6 mb-8 w-full text-center ${brandFont.className}`}
 			style={{ textShadow: "#0049FF 2px 2px" }}
 		>
 			{title}

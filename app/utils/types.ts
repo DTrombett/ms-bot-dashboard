@@ -77,3 +77,24 @@ export type MatchesData =
 			data: Matches;
 	  }
 	| { success: false; message: string; errors: unknown[] };
+export type MatchDays =
+	| {
+			success: true;
+			data: {
+				category_status: "LIVE" | "PLAYED" | "TO BE PLAYED";
+				description: `${number}`;
+				id_category: number;
+			}[];
+	  }
+	| { success: false; message: string; errors: unknown[] };
+export type Prediction = {
+	matchId: number;
+	userId: string;
+	prediction: string;
+};
+export type User = {
+	id: string;
+	dayPoints?: number | null;
+	matchPointsHistory?: string | null;
+	match?: number | null;
+};

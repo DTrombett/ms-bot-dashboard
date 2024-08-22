@@ -1,4 +1,4 @@
-import type { Matches } from "@app/types";
+import type { Matches, Prediction, User } from "@app/utils/types";
 import { faStar } from "@fortawesome/free-regular-svg-icons/faStar";
 import { faStar as faSolidStar } from "@fortawesome/free-solid-svg-icons/faStar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,10 +11,14 @@ const MatchField = ({
 	match,
 	setMatchOfTheMatch,
 	isMatchOfTheMatch,
+	predictionsPromise,
 }: {
 	match: Matches[number];
 	setMatchOfTheMatch: Dispatch<number>;
 	isMatchOfTheMatch: boolean;
+	predictionsPromise: Promise<
+		(Pick<Prediction, "matchId" | "prediction"> & Pick<User, "match">)[]
+	>;
 }) => (
 	<div className="flex flex-col lg:flex-row justify-between items-center border-white my-4 px-2 lg:h-16">
 		<div className="w-full flex flex-row-reverse my-2 lg:my-0 justify-between lg:justify-start lg:flex-row items-center lg:w-40">
@@ -36,7 +40,10 @@ const MatchField = ({
 			<DateTime date={match.date_time} />
 		</div>
 		<MatchTitle match={match} />
-		<PredictionInput id={match.match_id} />
+		<PredictionInput
+			id={match.match_id}
+			predictionsPromise={predictionsPromise}
+		/>
 	</div>
 );
 

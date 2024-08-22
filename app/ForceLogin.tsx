@@ -1,6 +1,6 @@
 "use client";
 import { useEffect } from "react";
-import { signIn } from "./actions";
+import { signIn } from "./utils/actions";
 
 const ForceLogin = () => {
 	useEffect(() => {

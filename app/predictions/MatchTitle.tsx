@@ -1,17 +1,11 @@
-import type { Matches } from "@app/types";
-import { Bai_Jamjuree } from "next/font/google";
+import { serieASemiBold } from "@app/utils/fonts";
+import type { Matches } from "@app/utils/types";
 import Image from "next/image";
 import { memo } from "react";
 
-const semiBold = Bai_Jamjuree({
-	subsets: ["latin"],
-	display: "swap",
-	weight: "600",
-});
-
 const MatchTitle = ({ match }: { match: Matches[number] }) => (
 	<div
-		className={`flex-1 flex flex-col sm:w-full lg:w-auto sm:flex-row justify-center text-nowrap text-xl ${semiBold.className}`}
+		className={`flex-1 flex flex-col sm:w-full lg:w-auto sm:flex-row justify-center text-nowrap text-xl ${serieASemiBold.className}`}
 	>
 		<div className="flex-1 flex justify-center lg:justify-end">
 			<a
