@@ -1,6 +1,6 @@
 "use client";
 import type { Matches, Prediction, User } from "@app/utils/types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MatchField from "./MatchField";
 
 const FormElements = ({
@@ -12,8 +12,13 @@ const FormElements = ({
 		(Pick<Prediction, "matchId" | "prediction"> & Pick<User, "match">)[]
 	>;
 }) => {
-	const [matchOfTheMatch, setMatchOfTheMatch] = useState<number>();
+	const [matchOfTheMatch, setMatchOfTheMatch] = useState(0);
 
+	useEffect(() => {
+		void predictionsPromise.then((p) => {
+			if (p[0]?.match) setMatchOfTheMatch(p[0].match);
+		});
+	}, [predictionsPromise]);
 	return (
 		<>
 			{matches.map((m) => (
@@ -25,7 +30,12 @@ const FormElements = ({
 					predictionsPromise={predictionsPromise}
 				/>
 			))}
-			<input type="hidden" value={matchOfTheMatch} name="matchOfTheMatch" />
+			<input
+				type="hidden"
+				value={matchOfTheMatch}
+				name="matchOfTheMatch"
+				required
+			/>
 		</>
 	);
 };

@@ -20,6 +20,7 @@ const MatchesLoader = async ({ userId }: { userId: string }) => {
 					...matches.data.map((m) => m.match_id)
 				)}
 			/>
+			<input type="hidden" name="matchDayId" value={matchDay.id_category} />
 			<input type="submit" className="hidden" />
 		</form>
 	);

@@ -18,8 +18,7 @@ const Predictions = async () => {
 	void loadMatchDays();
 	const session = await auth();
 
-	if (!session) return <ForceLogin />;
-	if (!session.user?.id) return <>An error occurred while authenticating...</>;
+	if (!session?.user?.id) return <ForceLogin />;
 	return (
 		<>
 			<Header session={session} title="PRONOSTICI" />
