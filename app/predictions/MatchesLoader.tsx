@@ -1,8 +1,7 @@
-import { sendPredictions } from "@app/utils/actions";
 import loadMatchDays from "@app/utils/loadMatchDays";
 import loadMatches from "@app/utils/loadMatches";
 import loadPredictions from "@app/utils/loadPredictions";
-import FormElements from "./FormElements";
+import Form from "./Form";
 
 const MatchesLoader = async ({ userId }: { userId: string }) => {
 	const matchDay = await loadMatchDays();
@@ -12,17 +11,14 @@ const MatchesLoader = async ({ userId }: { userId: string }) => {
 
 	if (!matches) return <>Failed to download the matches</>;
 	return (
-		<form className="lg:mt-4 lg:px-2" action={sendPredictions}>
-			<FormElements
-				matches={matches.data}
-				predictionsPromise={loadPredictions(
-					userId,
-					...matches.data.map((m) => m.match_id)
-				)}
-			/>
-			<input type="hidden" name="matchDayId" value={matchDay.id_category} />
-			<input type="submit" className="hidden" />
-		</form>
+		<Form
+			matchDayId={matchDay.id_category}
+			matches={matches.data}
+			predictionsPromise={loadPredictions(
+				userId,
+				...matches.data.map((m) => m.match_id)
+			)}
+		/>
 	);
 };
 

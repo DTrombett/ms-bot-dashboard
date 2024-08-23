@@ -1,43 +1,65 @@
-"use client";
 import type { Matches, Prediction, User } from "@app/utils/types";
-import { useEffect, useState } from "react";
-import MatchField from "./MatchField";
+import dynamic from "next/dynamic";
+import { memo, useEffect, useState } from "react";
+import MatchesArray from "./MatchesArray";
+
+const SavePopup = dynamic(() => import("./SavePopup"));
+const ErrorPopup = dynamic(() => import("./ErrorPopup"));
 
 const FormElements = ({
 	matches,
 	predictionsPromise,
+	pending,
+	state,
 }: {
 	matches: Matches;
 	predictionsPromise: Promise<
 		(Pick<Prediction, "matchId" | "prediction"> & Pick<User, "match">)[]
 	>;
+	pending: boolean;
+	state:
+		| { error: string }
+		| { invalid: number[]; validMatchOfTheMatch: boolean }
+		| undefined;
 }) => {
 	const [matchOfTheMatch, setMatchOfTheMatch] = useState(0);
+	const [edited, setEdited] = useState(false);
+	const [error, setError] = useState<number[] | string>();
 
 	useEffect(() => {
 		void predictionsPromise.then((p) => {
 			if (p[0]?.match) setMatchOfTheMatch(p[0].match);
 		});
 	}, [predictionsPromise]);
+	useEffect(() => {
+		setEdited(false);
+		if (state)
+			if ("error" in state) setError(state.error);
+			else if (state.invalid.length) setError(state.invalid);
+			else if (!state.validMatchOfTheMatch)
+				setError("Match of the Match non valido!");
+	}, [state]);
 	return (
 		<>
-			{matches.map((m) => (
-				<MatchField
-					match={m}
-					key={m.match_id}
-					setMatchOfTheMatch={setMatchOfTheMatch}
-					isMatchOfTheMatch={matchOfTheMatch === m.match_id}
-					predictionsPromise={predictionsPromise}
-				/>
-			))}
+			<MatchesArray
+				matchOfTheMatch={matchOfTheMatch}
+				matches={matches}
+				predictionsPromise={predictionsPromise}
+				setMatchOfTheMatch={setMatchOfTheMatch}
+				setEdited={setEdited}
+			/>
 			<input
 				type="hidden"
 				value={matchOfTheMatch}
 				name="matchOfTheMatch"
-				required
+				min={1}
 			/>
+			{edited && <SavePopup pending={pending} />}
+			{error && (
+				<ErrorPopup error={error} matches={matches} setError={setError} />
+			)}
 		</>
 	);
 };
 
-export default FormElements;
+export default memo(FormElements);

@@ -10,11 +10,10 @@ export const signIn = async (...args: Parameters<typeof authSignIn>) =>
 	authSignIn(...args) as Promise<never>;
 export const signOut = async (...args: Parameters<typeof authSignOut>) =>
 	authSignOut(...args) as Promise<never>;
-export const sendPredictions = async (form: FormData) => {
+export const sendPredictions = async (_prevState: unknown, form: FormData) => {
 	const matchDayId = form.get("matchDayId");
 
-	if (typeof matchDayId !== "string")
-		return { error: "Invalid match day id provided" };
+	if (typeof matchDayId !== "string") return { error: "Giornata non valida!" };
 	const session = await auth();
 
 	if (!session?.user?.id) return authSignIn("discord");
@@ -25,12 +24,13 @@ export const sendPredictions = async (form: FormData) => {
 		.then((res) => res.json<MatchesData>())
 		.catch(console.error);
 
-	if (!matches?.success) return { error: "Couldn't retrieve matches" };
+	if (!matches?.success || !matches.data.length)
+		return { error: "Impossibile caricare le partite!" };
 	if (
 		Date.now() >
 		new Date(matches.data[0].date_time).getTime() - 1_000 * 60 * 15
 	)
-		return { error: "This predictions are expired" };
+		return { error: "Questi pronostici sono scaduti!" };
 	const { DB } = getRequestContext().env;
 	const invalid: number[] = [];
 	const predictions: Prediction[] = [];

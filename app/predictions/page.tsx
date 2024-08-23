@@ -22,7 +22,7 @@ const Predictions = async () => {
 	return (
 		<>
 			<Header session={session} title="PRONOSTICI" />
-			<div className={`sm:px-4 lg:px-8 mb-8 ${serieANormal.className}`}>
+			<div className={`sm:px-4 lg:px-8 mb-28 ${serieANormal.className}`}>
 				<div className="mx-6 sm:mx-4 mb-6 h-16 flex items-center">
 					<Image
 						alt="Serie A Enilive"

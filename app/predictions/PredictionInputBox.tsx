@@ -1,17 +1,19 @@
 import { defaultNormal } from "@app/utils/fonts";
 import type { Prediction, User } from "@app/utils/types";
-import { use } from "react";
+import { use, type Dispatch } from "react";
 
 const PredictionInputBox = ({
 	id,
 	example,
 	predictionsPromise,
+	setEdited,
 }: {
 	id: number;
 	example: string;
 	predictionsPromise: Promise<
 		(Pick<Prediction, "matchId" | "prediction"> & Pick<User, "match">)[]
 	>;
+	setEdited: Dispatch<boolean>;
 }) => (
 	<input
 		type="text"
@@ -22,6 +24,7 @@ const PredictionInputBox = ({
 		required
 		autoCapitalize="characters"
 		placeholder={`es. ${example}`}
+		onChange={setEdited.bind(null, true)}
 		defaultValue={
 			use(predictionsPromise).find((predict) => predict.matchId === id)
 				?.prediction

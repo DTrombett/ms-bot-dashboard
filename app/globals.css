@@ -1,0 +1,13 @@
+.fadeFromBottom {
+	animation: 1s ease-out fadeFromBottom;
+}
+
+@keyframes fadeFromBottom {
+	from {
+		margin-bottom: -128px;
+		opacity: 0;
+	}
+	90% {
+		margin-bottom: 16px;
+	}
+}

@@ -1,6 +1,6 @@
 import { defaultNormal } from "@app/utils/fonts";
 import type { Prediction, User } from "@app/utils/types";
-import { memo, Suspense, useMemo } from "react";
+import { memo, Suspense, useMemo, type Dispatch } from "react";
 import PredictionInputBox from "./PredictionInputBox";
 
 const predictionExamples = [
@@ -21,11 +21,13 @@ const predictionExamples = [
 const PredictionInput = ({
 	id,
 	predictionsPromise,
+	setEdited,
 }: {
 	id: number;
 	predictionsPromise: Promise<
 		(Pick<Prediction, "matchId" | "prediction"> & Pick<User, "match">)[]
 	>;
+	setEdited: Dispatch<boolean>;
 }) => {
 	const example = useMemo(
 		() =>
@@ -51,6 +53,7 @@ const PredictionInput = ({
 					id={id}
 					example={example}
 					predictionsPromise={predictionsPromise}
+					setEdited={setEdited}
 				/>
 			</Suspense>
 		</div>

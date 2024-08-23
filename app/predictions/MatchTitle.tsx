@@ -5,7 +5,7 @@ import { memo } from "react";
 
 const MatchTitle = ({ match }: { match: Matches[number] }) => (
 	<div
-		className={`flex-1 flex flex-col sm:w-full lg:w-auto sm:flex-row justify-center text-nowrap text-xl ${serieASemiBold.className}`}
+		className={`flex-1 flex flex-col sm:my-2 lg:my-0 sm:w-full lg:w-auto sm:flex-row justify-center text-nowrap text-xl ${serieASemiBold.className}`}
 	>
 		<div className="flex-1 flex justify-center lg:justify-end">
 			<a
@@ -25,7 +25,7 @@ const MatchTitle = ({ match }: { match: Matches[number] }) => (
 			/>
 		</div>
 		<span
-			className="mx-8 my-2 lg:my-0 sm:flex-1 lg:flex-none text-center lg:text-left"
+			className="mx-8 my-2 sm:my-0 sm:flex-1 lg:flex-none text-center lg:text-left"
 			style={{ color: "#00e8da" }}
 		>
 			VS
