@@ -1,7 +1,7 @@
 "use client";
 import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons/faArrowRightFromBracket";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { signOut } from "./actions";
+import { signOut } from "./utils/actions";
 
 const LogOutButton = () => (
 	<button

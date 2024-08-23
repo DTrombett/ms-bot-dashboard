@@ -1,40 +1,28 @@
-import { auth } from "@app/auth";
 import ForceLogin from "@app/ForceLogin";
 import Header from "@app/Header";
-import { Bai_Jamjuree } from "next/font/google";
+import { auth } from "@app/utils/auth";
+import {
+	serieABold,
+	serieAMedium,
+	serieANormal,
+	serieASemiBold,
+} from "@app/utils/fonts";
+import loadMatchDays from "@app/utils/loadMatchDays";
 import Image from "next/image";
 import { Suspense } from "react";
+import MatchDayTitle from "./MatchDayTitle";
 import MatchesLoader from "./MatchesLoader";
-
-const font = Bai_Jamjuree({
-	subsets: ["latin"],
-	display: "swap",
-	weight: "400",
-});
-const bold = Bai_Jamjuree({
-	subsets: ["latin"],
-	display: "swap",
-	weight: "700",
-});
-const medium = Bai_Jamjuree({
-	subsets: ["latin"],
-	display: "swap",
-	weight: "500",
-});
-const semiBold = Bai_Jamjuree({
-	subsets: ["latin"],
-	display: "swap",
-	weight: "600",
-});
+import PredictionsStatus from "./PredictionsStatus";
 
 const Predictions = async () => {
+	void loadMatchDays();
 	const session = await auth();
 
-	if (!session) return <ForceLogin />;
+	if (!session?.user?.id) return <ForceLogin />;
 	return (
 		<>
 			<Header session={session} title="PRONOSTICI" />
-			<div className={`sm:px-4 lg:px-8 mb-8 ${font.className}`}>
+			<div className={`sm:px-4 lg:px-8 mb-28 ${serieANormal.className}`}>
 				<div className="mx-6 sm:mx-4 mb-6 h-16 flex items-center">
 					<Image
 						alt="Serie A Enilive"
@@ -44,40 +32,47 @@ const Predictions = async () => {
 						style={{ height: "64px" }}
 						className="rounded-sm w-auto mr-4"
 					/>
-					<a
-						className={`text-xl sm:text-2xl md:text-3xl mb-2 hover:underline ${bold.className}`}
-						style={{ color: "#00e8da" }}
-						href="https://legaseriea.it/it/serie-a"
-						target="_blank"
-						tabIndex={-1}
-					>
-						SERIE A ENILIVE
-					</a>
+					<h2>
+						<a
+							className={`text-xl sm:text-2xl md:text-3xl hover:underline ${serieABold.className}`}
+							style={{ color: "#00e8da" }}
+							href="https://legaseriea.it/it/serie-a"
+							target="_blank"
+							tabIndex={-1}
+						>
+							SERIE A ENILIVE
+						</a>
+					</h2>
 				</div>
 				<div className="flex flex-col p-4 rounded-lg border-white border-opacity-20 lg:border lg:bg-zinc-700 lg:bg-opacity-25">
 					<div className="flex justify-between items-end px-2">
 						<div>
 							<h3
-								className={`${semiBold.className} text-2xl mb-1`}
+								className={`${serieASemiBold.className} text-2xl mb-1`}
 								style={{ color: "#00e8da" }}
 							>
-								2ª Giornata
+								<Suspense fallback={<>{"\u200b"}</>}>
+									<MatchDayTitle />
+								</Suspense>
 							</h3>
-							<span
-								className={`${medium.className} text-lg`}
-								style={{ color: "#d82b2b" }}
+							<Suspense
+								fallback={
+									<span className={`${serieAMedium.className} text-lg`}>
+										{"\u200b"}
+									</span>
+								}
 							>
-								PRONOSTICI NON INSERITI
-							</span>
+								<PredictionsStatus userId={session.user.id} />
+							</Suspense>
 						</div>
 						<span
-							className={`hidden lg:block w-44 text-center mx-1 text-lg ${medium.className}`}
+							className={`hidden lg:block w-44 text-center mx-1 text-lg ${serieAMedium.className}`}
 						>
 							IL TUO PRONOSTICO
 						</span>
 					</div>
 					<Suspense>
-						<MatchesLoader />
+						<MatchesLoader userId={session.user.id} />
 					</Suspense>
 				</div>
 			</div>

@@ -1,12 +1,11 @@
 import Background from "@images/background-blur.webp";
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
 import Image from "next/image";
 import { Suspense } from "react";
 import "tailwindcss/tailwind.css";
 import "./globals.css";
+import { defaultNormal } from "./utils/fonts";
 
-const font = Roboto({ subsets: ["latin"], weight: "400", display: "swap" });
 const description =
 	"Dashboard per interagire con il bot della community MS! Entra nel server Discord tramite l'invito: https://discord.gg/5aE8gdrF8k";
 const title = "MS Bot Dashboard";
@@ -43,7 +42,7 @@ const RootLayout = async ({
 }>) => (
 	<html lang="it">
 		<body
-			className={`${font.className} flex flex-col min-h-screen text-white bg-zinc-800`}
+			className={`${defaultNormal.className} flex flex-col min-h-screen text-white bg-zinc-800`}
 		>
 			<Image
 				src={Background}

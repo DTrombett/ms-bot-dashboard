@@ -1,24 +1,37 @@
-"use client";
-import type { Matches } from "@app/types";
-import { useState } from "react";
-import MatchField from "./MatchField";
+import type { Matches, Prediction, User } from "@app/utils/types";
+import { memo, useEffect, useState, type Dispatch } from "react";
+import MatchesArray from "./MatchesArray";
 
-const FormElements = ({ matches }: { matches: Matches }) => {
-	const [matchOfTheMatch, setMatchOfTheMatch] = useState<number>();
+const FormElements = ({
+	matches,
+	predictionsPromise,
+	setEdited,
+}: {
+	matches: Matches;
+	predictionsPromise: Promise<
+		(Pick<Prediction, "matchId" | "prediction"> & Pick<User, "match">)[]
+	>;
+	setEdited: Dispatch<boolean>;
+}) => {
+	const [matchOfTheMatch, setMatchOfTheMatch] = useState(0);
 
+	useEffect(() => {
+		void predictionsPromise.then((p) => {
+			if (p[0]?.match) setMatchOfTheMatch(p[0].match);
+		});
+	}, [predictionsPromise]);
 	return (
 		<>
-			{matches.map((m) => (
-				<MatchField
-					match={m}
-					key={m.match_id}
-					setMatchOfTheMatch={setMatchOfTheMatch}
-					isMatchOfTheMatch={matchOfTheMatch === m.match_id}
-				/>
-			))}
+			<MatchesArray
+				matchOfTheMatch={matchOfTheMatch}
+				matches={matches}
+				predictionsPromise={predictionsPromise}
+				setMatchOfTheMatch={setMatchOfTheMatch}
+				setEdited={setEdited}
+			/>
 			<input type="hidden" value={matchOfTheMatch} name="matchOfTheMatch" />
 		</>
 	);
 };
 
-export default FormElements;
+export default memo(FormElements);

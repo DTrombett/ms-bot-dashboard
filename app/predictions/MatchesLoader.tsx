@@ -1,43 +1,24 @@
-import { sendPredictions } from "@app/actions";
-import type { MatchesData } from "@app/types";
-import { env } from "process";
-import FormElements from "./FormElements";
+import loadMatchDays from "@app/utils/loadMatchDays";
+import loadMatches from "@app/utils/loadMatches";
+import loadPredictions from "@app/utils/loadPredictions";
+import Form from "./Form";
 
-const MatchesLoader = async () => {
-	const matchDays = await fetch(
-		`https://legaseriea.it/api/season/${env.SEASON_ID}/championship/A/matchday`,
-		{ next: { revalidate: Infinity } }
-	).then((res) =>
-		res.json<
-			| {
-					success: true;
-					data: {
-						category_status: "LIVE" | "PLAYED" | "TO BE PLAYED";
-						description: `${number}`;
-						id_category: number;
-					}[];
-			  }
-			| { success: false; message: string; errors: unknown[] }
-		>()
-	);
-
-	if (!matchDays.success) return <>{matchDays.message}</>;
-	const matchDay = matchDays.data.find(
-		(d) => d.category_status === "TO BE PLAYED"
-	);
+const MatchesLoader = async ({ userId }: { userId: string }) => {
+	const matchDay = await loadMatchDays();
 
 	if (!matchDay) return <>No match to be played!</>;
-	const matches = await fetch(
-		`https://legaseriea.it/api/stats/live/match?match_day_id=${matchDay.id_category}&order=oldest`,
-		{ next: { revalidate: Infinity } }
-	).then((res) => res.json<MatchesData>());
+	const matches = await loadMatches(matchDay.id_category);
 
-	if (!matches.success) return <>{matches.message}</>;
+	if (!matches) return <>Failed to download the matches</>;
 	return (
-		<form className="lg:mt-4 lg:px-2" action={sendPredictions}>
-			<input type="submit" className="hidden" />
-			<FormElements matches={matches.data} />
-		</form>
+		<Form
+			matchDayId={matchDay.id_category}
+			matches={matches.data}
+			predictionsPromise={loadPredictions(
+				userId,
+				...matches.data.map((m) => m.match_id)
+			)}
+		/>
 	);
 };
 

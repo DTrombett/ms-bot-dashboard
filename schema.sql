@@ -1,0 +1,16 @@
+DROP TABLE IF EXISTS Predictions;
+DROP TABLE IF EXISTS Users;
+CREATE TABLE Users (
+	id VARCHAR(31) PRIMARY KEY,
+	dayPoints INTEGER,
+	match INTEGER,
+	remindMinutes INTEGER,
+	reminded INTEGER DEFAULT 0,
+	matchPointsHistory VARCHAR(255)
+);
+CREATE TABLE Predictions (
+	matchId INTEGER NOT NULL,
+	userId VARCHAR(31) NOT NULL REFERENCES Users(id) ON DELETE CASCADE,
+	prediction VARCHAR(255) NOT NULL,
+	PRIMARY KEY (userId, matchId)
+);
