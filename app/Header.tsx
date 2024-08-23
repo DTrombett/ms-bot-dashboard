@@ -1,6 +1,5 @@
 import type { Session } from "next-auth";
 import Image from "next/image";
-import SmallLogInButton from "./SmallLogInButton";
 import { brandFont } from "./utils/fonts";
 import rest from "./utils/rest";
 
@@ -18,8 +17,8 @@ const Header = ({
 		>
 			{title}
 		</h1>
-		{session ? (
-			session.user?.image ? (
+		{session &&
+			(session.user?.image ? (
 				<Image
 					src={session.user.image}
 					width={128}
@@ -39,10 +38,7 @@ const Header = ({
 					className="hidden sm:block sm:w-12 lg:w-16 h-auto rounded-full absolute right-6 top-6"
 					title={session.user?.name ?? ""}
 				/>
-			)
-		) : (
-			<SmallLogInButton />
-		)}
+			))}
 	</>
 );
 

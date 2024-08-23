@@ -29,7 +29,7 @@ const PredictionInputBox = ({
 			use(predictionsPromise).find((predict) => predict.matchId === id)
 				?.prediction
 		}
-		className={`py-1 px-2 w-40 rounded text-xl bg-zinc-600 bg-opacity-25 ${defaultNormal.className}`}
+		className={`py-1 px-2 w-40 rounded text-center text-xl bg-zinc-600 bg-opacity-25 ${defaultNormal.className}`}
 	/>
 );
 
