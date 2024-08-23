@@ -3,7 +3,6 @@ import { cache } from "react";
 import type { Prediction, User } from "./types";
 
 const loadPredictions = cache(async (userId: string, ...matches: number[]) => {
-	console.log("here2");
 	const { results } = await getRequestContext()
 		.env.DB.prepare(
 			`SELECT Predictions.matchId,
