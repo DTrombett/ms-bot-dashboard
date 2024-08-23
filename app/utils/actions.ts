@@ -1,10 +1,8 @@
 "use server";
 import { getRequestContext } from "@cloudflare/next-on-pages";
 import { auth, signIn as authSignIn, signOut as authSignOut } from "./auth";
+import { predictionRegex } from "./Constants";
 import type { MatchesData, Prediction } from "./types";
-
-const predictionRegex =
-	/^(1|x|2|1x|12|x2|((?<prediction>1|2|x)\s*\(\s*(?<first>\d+)\s*-\s*(?<second>\d+)\s*\)))$/;
 
 export const signIn = async (...args: Parameters<typeof authSignIn>) =>
 	authSignIn(...args) as Promise<never>;
