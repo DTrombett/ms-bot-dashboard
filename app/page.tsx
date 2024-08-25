@@ -29,7 +29,7 @@ const Home = async () => {
 					MS BOT
 				</span>
 				<span
-					className={`${brandFont.className} text-xl text-center my-4 tracking-wide`}
+					className={`${brandFont.className} text-xl text-center my-4 px-4 tracking-wide`}
 				>
 					Il bot ufficiale della community MS
 				</span>

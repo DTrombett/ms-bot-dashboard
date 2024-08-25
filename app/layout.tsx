@@ -48,8 +48,6 @@ const RootLayout = async ({
 				src={Background}
 				alt="background"
 				className="fixed h-screen w-screen opacity-25 object-cover -z-10"
-				quality={75}
-				priority
 			/>
 			<Suspense>{children}</Suspense>
 		</body>
