@@ -28,9 +28,14 @@ const Home = async () => {
 				>
 					MS BOT
 				</span>
+				<span
+					className={`${brandFont.className} text-xl text-center my-4 tracking-wide`}
+				>
+					Il bot ufficiale della community MS
+				</span>
 				{session ? (
 					<div
-						className={`flex sm:flex-row flex-col text-lg my-6 scale-110 lg:scale-100 ${defaultMedium.className}`}
+						className={`flex sm:flex-row flex-col text-lg my-2 scale-110 lg:scale-100 ${defaultMedium.className}`}
 					>
 						<a
 							href="https://discord.gg/hzkSbTY5VS"
