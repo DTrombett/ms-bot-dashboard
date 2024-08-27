@@ -21,7 +21,7 @@ const PredictionInputBox = ({
 		autoComplete="off"
 		maxLength={16}
 		name={id.toString()}
-		pattern="^(1|x|2|1x|12|x2|((1|2|x)\s*\(\s*(\d+)\s*-\s*(\d+)\s*\)))$"
+		pattern="^(1|x|X|2|1x|1X|12|x2|X2|((1|2|x|X)\s*\(\s*(\d+)\s*-\s*(\d+)\s*\)))$"
 		required
 		autoCapitalize="characters"
 		placeholder={`es. ${example}`}
