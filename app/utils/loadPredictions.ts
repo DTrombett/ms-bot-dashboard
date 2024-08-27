@@ -1,10 +1,10 @@
-import { getRequestContext } from "@cloudflare/next-on-pages";
 import { cache } from "react";
+import getRequestContext from "./getRequestContext";
 import type { Prediction, User } from "./types";
 
 const loadPredictions = cache(async (userId: string, ...matches: number[]) => {
-	const { results } = await getRequestContext()
-		.env.DB.prepare(
+	const result = await getRequestContext()
+		?.env.DB.prepare(
 			`SELECT Predictions.matchId,
 	Predictions.prediction,
 	Users.match
@@ -16,7 +16,7 @@ WHERE Users.id = ?
 		.bind(userId, ...matches)
 		.all<Pick<Prediction, "matchId" | "prediction"> & Pick<User, "match">>();
 
-	return results;
+	return result?.results;
 });
 
 export default loadPredictions;

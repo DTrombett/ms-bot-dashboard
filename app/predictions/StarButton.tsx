@@ -16,10 +16,11 @@ const StarButton = ({
 	matchId: number;
 	setEdited: Dispatch<boolean>;
 	predictionsPromise: Promise<
-		(Pick<Prediction, "matchId" | "prediction"> & Pick<User, "match">)[]
+		| (Pick<Prediction, "matchId" | "prediction"> & Pick<User, "match">)[]
+		| undefined
 	>;
 }) => {
-	const ref = useRef(use(predictionsPromise)[0]?.match === matchId);
+	const ref = useRef(use(predictionsPromise)?.[0]?.match === matchId);
 	const disabled = isMatchOfTheMatch || ref.current;
 
 	useEffect(() => {

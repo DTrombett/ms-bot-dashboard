@@ -1,7 +1,7 @@
 "use server";
-import { getRequestContext } from "@cloudflare/next-on-pages";
 import { auth, signIn as authSignIn, signOut as authSignOut } from "./auth";
 import { predictionRegex } from "./Constants";
+import getRequestContext from "./getRequestContext";
 import type { MatchesData, Prediction } from "./types";
 
 export const signIn = async (...args: Parameters<typeof authSignIn>) =>
@@ -29,7 +29,7 @@ export const sendPredictions = async (_prevState: unknown, form: FormData) => {
 		new Date(matches.data[0].date_time).getTime() - 1_000 * 60 * 15
 	)
 		return { error: "Questi pronostici sono scaduti!" };
-	const { DB } = getRequestContext().env;
+	const DB = getRequestContext()?.env.DB;
 	const invalid: number[] = [];
 	const predictions: Prediction[] = [];
 	const matchOfTheMatch = form.get("matchOfTheMatch");
@@ -73,13 +73,13 @@ export const sendPredictions = async (_prevState: unknown, form: FormData) => {
 				userId: session.user.id,
 			});
 	}
-	const predictionsQuery = DB.prepare(
+	const predictionsQuery = DB?.prepare(
 		`INSERT OR REPLACE INTO Predictions (matchId, userId, prediction) VALUES ${"\n(?, ?, ?),".repeat(
 			predictions.length
 		)}`.slice(0, -1)
 	).bind(...predictions.flatMap((m) => [m.matchId, m.userId, m.prediction]));
 
-	await DB.batch([
+	await DB?.batch([
 		typeof matchOfTheMatch === "string" && validMatchOfTheMatch
 			? DB.prepare(
 					`INSERT INTO Users(id, match)
@@ -92,7 +92,7 @@ export const sendPredictions = async (_prevState: unknown, form: FormData) => {
 			OR IGNORE INTO Users(id)
 		VALUES (?)`
 			  ).bind(session.user.id),
-		predictionsQuery,
+		predictionsQuery!,
 	]);
 	return { invalid, validMatchOfTheMatch };
 };

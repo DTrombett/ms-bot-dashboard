@@ -9,7 +9,8 @@ const FormElements = ({
 }: {
 	matches: Matches;
 	predictionsPromise: Promise<
-		(Pick<Prediction, "matchId" | "prediction"> & Pick<User, "match">)[]
+		| (Pick<Prediction, "matchId" | "prediction"> & Pick<User, "match">)[]
+		| undefined
 	>;
 	setEdited: Dispatch<boolean>;
 }) => {
@@ -17,7 +18,7 @@ const FormElements = ({
 
 	useEffect(() => {
 		void predictionsPromise.then((p) => {
-			if (p[0]?.match) setMatchOfTheMatch(p[0].match);
+			if (p?.[0]?.match) setMatchOfTheMatch(p[0].match);
 		});
 	}, [predictionsPromise]);
 	return (

@@ -52,12 +52,12 @@
 			"description": "Aggiungi o modifica i pronostici per la prossima giornata",
 			"url": "/predictions",
 			"icons": [
-				{ "src": "/icons/predictions/predictions.png", "sizes": "36x36" },
-				{ "src": "/icons/predictions/predictions.png", "sizes": "48x48" },
-				{ "src": "/icons/predictions/predictions.png", "sizes": "72x72" },
-				{ "src": "/icons/predictions/predictions.png", "sizes": "96x96" },
-				{ "src": "/icons/predictions/predictions.png", "sizes": "144x144" },
-				{ "src": "/icons/predictions/predictions.png", "sizes": "192x192" }
+				{ "src": "/icons/predictions/36x36.png", "sizes": "36x36" },
+				{ "src": "/icons/predictions/48x48.png", "sizes": "48x48" },
+				{ "src": "/icons/predictions/72x72.png", "sizes": "72x72" },
+				{ "src": "/icons/predictions/96x96.png", "sizes": "96x96" },
+				{ "src": "/icons/predictions/144x144.png", "sizes": "144x144" },
+				{ "src": "/icons/predictions/192x192.png", "sizes": "192x192" }
 			]
 		}
 	]

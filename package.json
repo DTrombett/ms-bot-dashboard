@@ -24,7 +24,7 @@
 		"preview": "npm run pages:build && wrangler pages dev",
 		"deploy": "npm run pages:build && wrangler pages deploy",
 		"cf-typegen": "wrangler types --env-interface CloudflareEnv env.d.ts",
-		"screenshots": "cd utils && del /q dist && tsc && cd dist && ren *.js *.mjs && node screenshots.mjs && copy /y ..\\..\\images\\xl-dark.png ..\\..\\public\\preview.png"
+		"screenshots": "cd utils && del /q dist && tsc && cd dist && ren *.js *.mjs && node screenshots.mjs"
 	},
 	"dependencies": {
 		"@cloudflare/next-on-pages": "^1.13.2",

@@ -11,7 +11,8 @@ const PredictionInputBox = ({
 	id: number;
 	example: string;
 	predictionsPromise: Promise<
-		(Pick<Prediction, "matchId" | "prediction"> & Pick<User, "match">)[]
+		| (Pick<Prediction, "matchId" | "prediction"> & Pick<User, "match">)[]
+		| undefined
 	>;
 	setEdited: Dispatch<boolean>;
 }) => (
@@ -26,7 +27,7 @@ const PredictionInputBox = ({
 		placeholder={`es. ${example}`}
 		onChange={setEdited.bind(null, true)}
 		defaultValue={
-			use(predictionsPromise).find((predict) => predict.matchId === id)
+			use(predictionsPromise)?.find((predict) => predict.matchId === id)
 				?.prediction
 		}
 		className={`py-1 px-2 w-40 rounded text-center text-xl bg-zinc-600 bg-opacity-25 ${defaultNormal.className}`}

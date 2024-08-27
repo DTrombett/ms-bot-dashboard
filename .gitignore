@@ -8,6 +8,8 @@
 
 # testing
 /coverage
+/utils/dist
+/utils/cookies.json
 
 # next.js
 /.next/

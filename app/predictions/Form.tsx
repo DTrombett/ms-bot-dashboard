@@ -18,7 +18,8 @@ const Form = ({
 	matches: Matches;
 	matchDayId: number;
 	predictionsPromise: Promise<
-		(Pick<Prediction, "matchId" | "prediction"> & Pick<User, "match">)[]
+		| (Pick<Prediction, "matchId" | "prediction"> & Pick<User, "match">)[]
+		| undefined
 	>;
 }) => {
 	const [state, action, pending] = useFormState<
@@ -41,6 +42,7 @@ const Form = ({
 	return (
 		<form
 			className="lg:mt-4 lg:px-2"
+			id="form"
 			action={action}
 			onSubmit={(event) => {
 				if (

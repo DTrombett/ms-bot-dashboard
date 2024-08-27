@@ -16,7 +16,8 @@ const MatchField = ({
 	setMatchOfTheMatch: Dispatch<number>;
 	isMatchOfTheMatch: boolean;
 	predictionsPromise: Promise<
-		(Pick<Prediction, "matchId" | "prediction"> & Pick<User, "match">)[]
+		| (Pick<Prediction, "matchId" | "prediction"> & Pick<User, "match">)[]
+		| undefined
 	>;
 	setEdited: Dispatch<boolean>;
 }) => (

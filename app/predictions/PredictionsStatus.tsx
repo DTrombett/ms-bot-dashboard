@@ -19,22 +19,25 @@ const PredictionsStatus = async ({ userId }: { userId: string }) => {
 	const matchIds = matches.data.map((m) => m.match_id);
 	const predictions = await loadPredictions(userId, ...matchIds);
 
-	return predictions.length === matches.data.length &&
+	return (
+		predictions &&
+		(predictions.length === matches.data.length &&
 		predictions[0].match &&
 		matchIds.includes(predictions[0].match) ? (
-		<span
-			className={`${serieAMedium.className} text-lg`}
-			style={{ color: "#00a445" }}
-		>
-			PRONOSTICI INSERITI
-		</span>
-	) : (
-		<span
-			className={`${serieAMedium.className} text-lg`}
-			style={{ color: "#d82b2b" }}
-		>
-			PRONOSTICI NON INSERITI
-		</span>
+			<span
+				className={`${serieAMedium.className} text-lg`}
+				style={{ color: "#00a445" }}
+			>
+				PRONOSTICI INSERITI
+			</span>
+		) : (
+			<span
+				className={`${serieAMedium.className} text-lg`}
+				style={{ color: "#d82b2b" }}
+			>
+				PRONOSTICI NON INSERITI
+			</span>
+		))
 	);
 };
 

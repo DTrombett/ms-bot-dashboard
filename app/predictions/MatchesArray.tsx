@@ -14,7 +14,8 @@ const MatchesArray = ({
 	setMatchOfTheMatch: Dispatch<number>;
 	matchOfTheMatch: number;
 	predictionsPromise: Promise<
-		(Pick<Prediction, "matchId" | "prediction"> & Pick<User, "match">)[]
+		| (Pick<Prediction, "matchId" | "prediction"> & Pick<User, "match">)[]
+		| undefined
 	>;
 	setEdited: Dispatch<boolean>;
 }) =>
