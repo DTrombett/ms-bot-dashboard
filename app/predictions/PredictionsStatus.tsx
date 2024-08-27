@@ -2,6 +2,7 @@ import { serieAMedium } from "@app/utils/fonts";
 import loadMatchDays from "@app/utils/loadMatchDays";
 import loadMatches from "@app/utils/loadMatches";
 import loadPredictions from "@app/utils/loadPredictions";
+import ms from "ms";
 
 const PredictionsStatus = async ({ userId }: { userId: string }) => {
 	const matchDay = await loadMatchDays();
@@ -20,24 +21,32 @@ const PredictionsStatus = async ({ userId }: { userId: string }) => {
 	const predictions = await loadPredictions(userId, ...matchIds);
 
 	return (
-		predictions &&
-		(predictions.length === matches.data.length &&
-		predictions[0].match &&
-		matchIds.includes(predictions[0].match) ? (
-			<span
-				className={`${serieAMedium.className} text-lg`}
-				style={{ color: "#00a445" }}
-			>
-				PRONOSTICI INSERITI
+		<>
+			{predictions &&
+				(predictions.length === matches.data.length &&
+				predictions[0].match &&
+				matchIds.includes(predictions[0].match) ? (
+					<span
+						className={`${serieAMedium.className} text-lg pr-2 border-r-2`}
+						style={{ color: "#00a445" }}
+					>
+						PRONOSTICI INSERITI
+					</span>
+				) : (
+					<span
+						className={`${serieAMedium.className} text-lg pr-2 border-r-2`}
+						style={{ color: "#d82b2b" }}
+					>
+						PRONOSTICI NON INSERITI
+					</span>
+				))}
+			<span className={`${serieAMedium.className} text-lg pl-2`}>
+				{ms(
+					Date.now() - Date.parse(matches.data[0].date_time) + 1000 * 60 * 15,
+					{ long: true }
+				)}
 			</span>
-		) : (
-			<span
-				className={`${serieAMedium.className} text-lg`}
-				style={{ color: "#d82b2b" }}
-			>
-				PRONOSTICI NON INSERITI
-			</span>
-		))
+		</>
 	);
 };
 
