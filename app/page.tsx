@@ -1,6 +1,7 @@
 import { faDiscord } from "@fortawesome/free-brands-svg-icons/faDiscord";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Avatar from "@images/avatar.webp";
+import Predictions from "@images/predictions.svg";
 import Image from "next/image";
 import Link from "next/link";
 import Header from "./Header";
@@ -54,14 +55,7 @@ const Home = async () => {
 							className="flex items-center rounded-lg px-4 py-2 m-2 w-40 justify-center transition-all duration-200 hover:scale-105 active:scale-100"
 							style={{ backgroundColor: "#1f8b4c" }}
 						>
-							<Image
-								src="https://raw.githubusercontent.com/twitter/twemoji/master/assets/svg/26bd.svg"
-								alt="soccer icon"
-								className="inline w-7 h-7 mr-2"
-								width={112}
-								height={112}
-								draggable={false}
-							/>
+							<Predictions className="inline w-7 h-7 mr-2" />
 							Pronostici
 						</Link>
 						<LogOutButton />

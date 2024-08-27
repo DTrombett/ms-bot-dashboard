@@ -1,5 +1,5 @@
 import Background from "@images/background-blur.webp";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Image from "next/image";
 import { Suspense } from "react";
 import "tailwindcss/tailwind.css";
@@ -17,7 +17,9 @@ export const metadata: Metadata = {
 	description,
 	generator: "Next.js",
 	icons: { icon: "/favicon.ico" },
-	metadataBase: new URL("http://localhost:3000"),
+	keywords: ["react", "nextjs", "discord", "bot"],
+	manifest: "/manifest.json",
+	metadataBase: new URL("https://ms-bot.trombett.org"),
 	openGraph: {
 		type: "website",
 		countryName: "Italy",
@@ -25,15 +27,24 @@ export const metadata: Metadata = {
 		locale: "it",
 		siteName: title,
 		title,
+		url: "https://ms-bot.trombett.org",
+		emails: "ms-bot@trombett.org",
+		// TODO
+		images: [],
 	},
+	publisher: "D Trombett",
 	title,
 	twitter: {
 		card: "summary_large_image",
 		description,
 		creator: "@dtrombett",
 		title,
+		// TODO
+		images: [],
 	},
 };
+
+export const viewport: Viewport = { themeColor: "#0049FF" };
 
 const RootLayout = async ({
 	children,

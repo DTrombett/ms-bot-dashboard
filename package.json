@@ -23,7 +23,8 @@
 		"pages:build": "npx @cloudflare/next-on-pages",
 		"preview": "npm run pages:build && wrangler pages dev",
 		"deploy": "npm run pages:build && wrangler pages deploy",
-		"cf-typegen": "wrangler types --env-interface CloudflareEnv env.d.ts"
+		"cf-typegen": "wrangler types --env-interface CloudflareEnv env.d.ts",
+		"screenshots": "cd utils && del /q dist && tsc && cd dist && ren *.js *.mjs && node screenshots.mjs && copy /y ..\\..\\images\\xl-dark.png ..\\..\\public\\preview.png"
 	},
 	"dependencies": {
 		"@cloudflare/next-on-pages": "^1.13.2",
@@ -62,6 +63,7 @@
 		"eslint-plugin-node": "^11.1.0",
 		"eslint-plugin-react": "^7.35.0",
 		"eslint-plugin-react-hooks": "^4.6.2",
+		"playwright": "^1.46.1",
 		"postcss": "^8",
 		"postcss-flexbugs-fixes": "^5.0.2",
 		"postcss-import": "^16.1.0",
