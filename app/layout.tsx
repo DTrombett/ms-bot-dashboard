@@ -29,8 +29,7 @@ export const metadata: Metadata = {
 		title,
 		url: "https://ms-bot.trombett.org",
 		emails: "ms-bot@trombett.org",
-		// TODO
-		images: [],
+		images: ["/previews/xl.png", "/previews/default.png", "/previews/2xl.png"],
 	},
 	publisher: "D Trombett",
 	title,
@@ -39,8 +38,7 @@ export const metadata: Metadata = {
 		description,
 		creator: "@dtrombett",
 		title,
-		// TODO
-		images: [],
+		images: ["/previews/xl.png", "/previews/default.png", "/previews/2xl.png"],
 	},
 };
 
