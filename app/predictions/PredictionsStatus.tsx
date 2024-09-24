@@ -1,11 +1,11 @@
 import { serieAMedium } from "@app/utils/fonts";
-import loadMatchDays from "@app/utils/loadMatchDays";
+import loadMatchDay from "@app/utils/loadMatchDay";
 import loadMatches from "@app/utils/loadMatches";
 import loadPredictions from "@app/utils/loadPredictions";
 import ms from "ms";
 
 const PredictionsStatus = async ({ userId }: { userId: string }) => {
-	const matchDay = await loadMatchDays();
+	const matchDay = await loadMatchDay();
 
 	if (!matchDay)
 		return (

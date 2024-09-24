@@ -1,7 +1,7 @@
-import loadMatchDays from "@app/utils/loadMatchDays";
+import loadMatchDay from "@app/utils/loadMatchDay";
 
 const MatchDayTitle = async () => {
-	const matchDay = await loadMatchDays();
+	const matchDay = await loadMatchDay();
 
 	return matchDay ? `${matchDay.description}ª Giornata` : "N/A";
 };

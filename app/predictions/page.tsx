@@ -7,7 +7,7 @@ import {
 	serieANormal,
 	serieASemiBold,
 } from "@app/utils/fonts";
-import loadMatchDays from "@app/utils/loadMatchDays";
+import loadMatchDay from "@app/utils/loadMatchDay";
 import Image from "next/image";
 import { Suspense } from "react";
 import MatchDayTitle from "./MatchDayTitle";
@@ -15,7 +15,7 @@ import MatchesLoader from "./MatchesLoader";
 import PredictionsStatus from "./PredictionsStatus";
 
 const Predictions = async () => {
-	void loadMatchDays();
+	void loadMatchDay();
 	const session = await auth();
 
 	if (!session?.user?.id) return <ForceLogin />;

@@ -1,10 +1,10 @@
-import loadMatchDays from "@app/utils/loadMatchDays";
+import loadMatchDay from "@app/utils/loadMatchDay";
 import loadMatches from "@app/utils/loadMatches";
 import loadPredictions from "@app/utils/loadPredictions";
 import Form from "./Form";
 
 const MatchesLoader = async ({ userId }: { userId: string }) => {
-	const matchDay = await loadMatchDays();
+	const matchDay = await loadMatchDay();
 
 	if (!matchDay) return <>No match to be played!</>;
 	const matches = await loadMatches(matchDay.id_category);
