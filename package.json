@@ -72,6 +72,6 @@
 		"postcss-preset-env": "^10.0.2",
 		"typescript": "^5",
 		"vercel": "^37.1.2",
-		"wrangler": "^3.72.2"
+		"wrangler": "^3.78.8"
 	}
 }
