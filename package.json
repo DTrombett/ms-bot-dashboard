@@ -71,7 +71,7 @@
 		"postcss-import": "^16.1.0",
 		"postcss-preset-env": "^10.0.2",
 		"typescript": "^5",
-		"vercel": "^37.1.2",
+		"vercel": "^37.7.1",
 		"wrangler": "^3.72.2"
 	}
 }
