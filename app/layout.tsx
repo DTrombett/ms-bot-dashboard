@@ -63,4 +63,6 @@ const RootLayout = async ({
 	</html>
 );
 
+export const runtime = "edge";
+
 export default RootLayout;

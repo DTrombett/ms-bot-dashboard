@@ -81,5 +81,3 @@ const Predictions = async () => {
 };
 
 export default Predictions;
-
-export const runtime = "edge";
