@@ -1,8 +1,6 @@
-import { redirect, RedirectType } from "next/navigation";
+import { redirect } from "next/navigation";
 
-const NotFound = () => {
-	redirect("https://youtu.be/dQw4w9WgXcQ", RedirectType.replace);
-};
+const NotFound = () => redirect("https://youtu.be/dQw4w9WgXcQ");
 
 export default NotFound;
 
