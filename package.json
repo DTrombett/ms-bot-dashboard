@@ -57,7 +57,7 @@
 		"autoprefixer": "^10.4.20",
 		"concurrently": "^9.1.2",
 		"eslint": "^8",
-		"eslint-config-next": "^15.1.6",
+		"eslint-config-next": "^15.1.7",
 		"eslint-plugin-import": "^2.31.0",
 		"eslint-plugin-jsx-a11y": "^6.10.2",
 		"eslint-plugin-next-on-pages": "^1.13.7",
