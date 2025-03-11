@@ -47,7 +47,7 @@
 	},
 	"devDependencies": {
 		"@cloudflare/workers-types": "^4.20250129.0",
-		"@next/eslint-plugin-next": "^15.1.6",
+		"@next/eslint-plugin-next": "^15.2.2",
 		"@svgr/webpack": "^8.1.0",
 		"@types/ms": "^2.1.0",
 		"@types/node": "^22.13.0",
