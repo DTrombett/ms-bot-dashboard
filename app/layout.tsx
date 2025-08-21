@@ -2,7 +2,6 @@ import Background from "@images/background-blur.webp";
 import type { Metadata, Viewport } from "next";
 import Image from "next/image";
 import { Suspense } from "react";
-import "tailwindcss/tailwind.css";
 import "./globals.css";
 import { defaultNormal } from "./utils/fonts";
 

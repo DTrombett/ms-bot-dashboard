@@ -44,7 +44,7 @@ const Predictions = async () => {
 						</a>
 					</h2>
 				</div>
-				<div className="flex flex-col p-4 rounded-lg border-white border-opacity-20 lg:border lg:bg-zinc-700 lg:bg-opacity-25">
+				<div className="flex flex-col p-4 rounded-lg border-white/20 lg:border lg:bg-zinc-700/25">
 					<div className="flex justify-between items-end px-2">
 						<div>
 							<h3

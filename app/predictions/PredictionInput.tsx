@@ -46,7 +46,7 @@ const PredictionInput = ({
 						required
 						disabled
 						placeholder={`es. ${example}`}
-						className={`py-1 px-2 w-40 rounded text-xl bg-zinc-600 bg-opacity-25 ${defaultNormal.className}`}
+						className={`py-1 px-2 w-40 rounded text-xl bg-zinc-600/25 ${defaultNormal.className}`}
 					/>
 				}
 			>
