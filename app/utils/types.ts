@@ -82,7 +82,7 @@ export type MatchDays =
 			success: true;
 			data: {
 				category_status: "LIVE" | "PLAYED" | "TO BE PLAYED";
-				description: `${number}`;
+				title: `Matchday ${number}`;
 				id_category: number;
 			}[];
 	  }
