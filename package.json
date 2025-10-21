@@ -28,7 +28,7 @@
 	},
 	"dependencies": {
 		"@cloudflare/next-on-pages": "^1.13.7",
-		"@discordjs/rest": "^2.4.2",
+		"@discordjs/rest": "^2.5.0",
 		"@fortawesome/fontawesome-svg-core": "^6.7.2",
 		"@fortawesome/free-brands-svg-icons": "^6.7.2",
 		"@fortawesome/free-regular-svg-icons": "^6.7.2",
