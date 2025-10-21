@@ -4,7 +4,7 @@ const DateTime = ({ date }: { date: string }) => {
 	const d = new Date(date);
 
 	return (
-		<span className="text-sm text-white text-opacity-80">
+		<span className="text-sm text-white/80">
 			{d.toLocaleDateString("it")}
 			<br className="hidden lg:inline" />
 			<span className="lg:hidden">, </span>

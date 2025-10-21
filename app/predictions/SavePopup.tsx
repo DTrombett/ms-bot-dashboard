@@ -5,7 +5,7 @@ import { memo } from "react";
 
 const SavePopup = ({ pending }: { pending: boolean }) => (
 	<div
-		className={`fadeFromBottom fixed flex items-center text-lg bottom-8 left-4 right-4 sm:left-8 sm:right-8 md:left-16 md:right-16 lg:left-40 lg:right-40 h-16 py-2 px-4 sm:px-8 shadow-lg shadow-zinc-900 rounded-lg bg-zinc-900 bg-opacity-90 ${defaultNormal.className}`}
+		className={`fadeFromBottom fixed flex items-center text-lg bottom-8 left-4 right-4 sm:left-8 sm:right-8 md:left-16 md:right-16 lg:left-40 lg:right-40 h-16 py-2 px-4 sm:px-8 shadow-lg shadow-zinc-900 rounded-lg bg-zinc-900/90 ${defaultNormal.className}`}
 	>
 		<FontAwesomeIcon
 			icon={faCircleExclamation}

@@ -13,7 +13,7 @@ const ErrorPopup = ({
 	matches: Matches;
 	setError: Dispatch<undefined>;
 }) => (
-	<div className="fixed flex top-0 bottom-0 left-0 right-0 bg-zinc-900 bg-opacity-60">
+	<div className="fixed flex top-0 bottom-0 left-0 right-0 bg-zinc-900/60">
 		<div className="bg-zinc-800 w-full h-full sm:w-96 sm:h-fit flex flex-col justify-between m-auto p-8 rounded-lg">
 			<div
 				className={`flex items-center mb-6 ${defaultMedium.className} text-2xl`}

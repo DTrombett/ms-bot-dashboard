@@ -28,7 +28,7 @@ const StarButton = ({
 	}, []);
 	return (
 		<button
-			className="h-12 w-12 lg:h-10 lg:w-10 p-2 rounded-lg lg:mr-2 hover:bg-zinc-700 hover:bg-opacity-50"
+			className="h-12 w-12 lg:h-10 lg:w-10 p-2 rounded-lg lg:mr-2 hover:bg-zinc-700/50"
 			title="Match of the Match"
 			onClick={
 				disabled
